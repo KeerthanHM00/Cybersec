@@ -1,0 +1,35 @@
+from urllib import request
+wiki = request.urlopen("https://www.example.com")
+print("type:", type(wiki))
+
+print("what can i do with wiki variable:", dir(wiki))
+
+print("Status code:", wiki.code)
+
+print("length of wiki:", wiki.length)
+
+print("Peek into wiki:",wiki.peek)
+
+from urllib import parse
+
+#https://www.youtube.com/watch?v=LosIGgon_KM&ab_channel=Socratica
+
+#dictionary
+print("---------------------")
+print("Parse lib")
+params = {"v":"LosIGgon_KM&ab_channel=Socratica","t":"2m31s"}
+querystring = parse.urlencode(params)
+print(querystring)
+url= "https://www.youtube.com/watch?"+querystring
+resp = request.urlopen(url)
+print(url, "and Status code:", resp.code)
+print("peek into response before utf8 conversion:", resp)
+html = resp.read().decode("utf-8")
+print("first 500 characters into html after utf-8 conversion:", html[:500])
+
+'''
+code=(wiki.code)
+if (code==200):
+    print("Successful!")
+else:
+    print ("try again")'''
