@@ -25,7 +25,7 @@ headers = {
 usr_name= str(input("username: ")) #username accepting variable
 pswd= str(input("password: ")) #password accepting variable
 post_data = "csrfToken=d570b82aff7b044367832cf895d6589d&source=&username="+usr_name+"&password="+pswd+"&remember=1"
-print(type(post_data))
+
 encoded_data = post_data.encode('utf-8')
 
 print("POST Request Headers:")
