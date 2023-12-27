@@ -22,32 +22,26 @@ headers = {
 }
 
 # POST data
-usr_name= str(input("username: ")) #username accepting variable
-pswd= str(input("password: ")) #password accepting variable
-post_data = "csrfToken=d570b82aff7b044367832cf895d6589d&source=&username="+usr_name+"&password="+pswd+"&remember=1"
+usr_name = str(input("username: "))  # username accepting variable
+pswd = str(input("password: "))  # password accepting variable
+post_data = "csrfToken=d570b82aff7b044367832cf895d6589d&source=&username=" + usr_name + "&password=" + pswd + "&remember=1"
 
 encoded_data = post_data.encode('utf-8')
 
-print("POST Request Headers:")
+'''print("POST Request Headers:")
 for key, value in headers.items():
-    print(f"{key}: {value}")
+    print(f"{key}: {value}")'''
 
 # Send a POST request
 try:
     request = urllib.request.Request(url, data=encoded_data, headers=headers, method='POST')
     response = urllib.request.urlopen(request)
 
-
-    # Print the content of the response
-    content = response.read()
-    compressed_data = content
-    decompressed_data = gzip.decompress(compressed_data)
-    utf8_data = decompressed_data.decode('utf-8')
-    print("\nResponse data:")
-    print(utf8_data)
+    # Check if the response is successful
+    if response.getcode() == 200:
+        print("\nSuccessful")
+    else:
+        print(f"Unsuccessful. Status Code: {response.getcode()}")
 
 except Exception as e:
-    print(f"Error: {e}")
-
-
-
+    print(f"Unsuccessful Login: Error: {e}")
